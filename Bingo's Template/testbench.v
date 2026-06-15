@@ -14,8 +14,8 @@ module testbench;
 
 
 
-localparam integer HOLD_NS = 5;
-localparam integer SETTLE_NS = 5;
+parameter integer HOLD_NS = 5;
+parameter integer SETTLE_NS = 5;
 
 integer errors;
 integer total_tests;
