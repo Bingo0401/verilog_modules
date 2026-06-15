@@ -18,9 +18,9 @@ localparam integer HOLD_NS = 5;
 localparam integer SETTLE_NS = 5;
 
 integer errors;
-integer total;
+integer total_tests;
 integer all_errors;
-integer all_total;
+integer all_total_tests;
 
 
 // Unit Under Test
