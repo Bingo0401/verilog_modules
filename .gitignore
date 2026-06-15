@@ -1,2 +1,4 @@
+#.DS_Store: ignore macOS Finder metadata files
 .DS_Store
-.a.out
+#.a.out: ignore default compiled binary output
+a.out
