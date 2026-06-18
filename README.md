@@ -10,6 +10,8 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 - [8-bit Adder/Subtractor](#8-bit-addersubtractor)
   - [Unsigned Adder/Subtractor](#unsigned-addersubtractor)
   - [Signed Adder/Subtractor](#signed-addersubtractor)
+- [Sequential Elements](#sequential-elements)
+  - [4-bit Shift Register](#4-bit-shift-register)
 - [Bingo's Template](#bingos-template)
 
 ---
@@ -90,6 +92,25 @@ These modules perform 8-bit signed (two's complement) addition and subtraction w
 #### Architectures
 -   **Ripple Carry:** A sequential adder with signed overflow detection. (`ripple_carry/adder_subtractor.v`)
 -   **Carry Lookahead:** A high-speed parallel adder with signed overflow detection. (`carry_lookahead/adder_subtractor.v`)
+
+---
+
+## Sequential Elements
+
+This section contains various sequential logic elements, which are fundamental building blocks for memory and state machines in digital circuits.
+
+### 4-bit Shift Register
+
+A 4-bit serial-in, parallel-out (SIPO) shift register with an asynchronous reset. Data is shifted in on the rising edge of the clock.
+
+**Location:** `Sequential_Elements/4 bit shift register/`
+
+**Files:**
+- `four_bit_shift_register.v` - Core module
+
+**Characteristics:**
+- Synchronous operation with active-high asynchronous reset
+- Serial input (`Sin`), parallel output (`Pout`), and serial output (`Sout`)
 
 ---
 
