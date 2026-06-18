@@ -9,7 +9,7 @@ endmodule
 
 
 
-module four_bit_carry_ripple_adder(Cin, Cout, A, B, S);
+module four_bit_adder(Cin, Cout, A, B, S);
 
 
 input Cin;
