@@ -7,10 +7,10 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 - [Adders](#adders)
   - [Full Adder](#full-adder)
   - [Four-Bit Adders](#four-bit-adders)
-    - [Ripple Carry Adder](#ripple-carry-adder)
-    - [Carry Lookahead Adder](#carry-lookahead-adder)
-- [Templates](#templates)
-  - [Bingo's Template](#bingos-template)
+- [8-bit Adder/Subtractor](#8-bit-addersubtractor)
+  - [Unsigned Adder/Subtractor](#unsigned-addersubtractor)
+  - [Signed Adder/Subtractor](#signed-addersubtractor)
+- [Bingo's Template](#bingos-template)
 
 ---
 
