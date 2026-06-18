@@ -64,9 +64,7 @@ An optimized 4-bit adder that generates carry signals in parallel, reducing prop
 
 ---
 
-## Templates
-
-### Bingo's Template
+## Bingo's Template
 
 A template project structure for Verilog module development.
 
