@@ -65,24 +65,31 @@ An optimized 4-bit adder that generates carry signals in parallel, reducing prop
 ---
 
 ## 8-bit Adder/Subtractor
-
-This section covers the 8-bit adder/subtractor modules found in the `Adder_Subtractor/` directory.
+ These modules are designed to perform both addition and subtraction on 8-bit inputs. The operation is controlled by a `mode` signal: when `mode` is `0`, the module performs addition (`A + B`); when `mode` is `1`, it performs subtraction (`A - B`). Subtraction is implemented efficiently using two's complement arithmetic (`A + ~B + 1`), where the `mode` signal simultaneously inverts the `B` input and serves as the initial carry-in.
 
 ### Unsigned Adder/Subtractor
 
-Performs 8-bit unsigned addition and subtraction.
+These modules perform 8-bit unsigned addition and subtraction.
 
 **Location:** `Adder_Subtractor/unsigned_without_overflow_detection/`
 
 **Testbench (`tb.v`):** A powerful testbench that exhaustively checks all 131,072 possible input combinations to guarantee correctness. It is used to test both the `ripple_carry` and `carry_lookahead` implementations.
 
+#### Architectures
+-   **Ripple Carry:** A simple, sequential adder. (`ripple_carry/adder_subtractor.v`)
+-   **Carry Lookahead:** A faster, parallel adder using a hierarchical design. (`carry_lookahead/adder_subtractor.v`)
+
 ### Signed Adder/Subtractor
 
-Performs 8-bit signed (two's complement) addition and subtraction with overflow detection.
+These modules perform 8-bit signed (two's complement) addition and subtraction with overflow detection.
 
 **Location:** `Adder_Subtractor/signed_with_overflow_detection/`
 
 **Testbench (`tb.v`):** A dedicated testbench focused on verifying signed arithmetic edge cases and overflow conditions. It is used to test both the `ripple_carry` and `carry_lookahead` implementations.
+
+#### Architectures
+-   **Ripple Carry:** A sequential adder with signed overflow detection. (`ripple_carry/adder_subtractor.v`)
+-   **Carry Lookahead:** A high-speed parallel adder with signed overflow detection. (`carry_lookahead/adder_subtractor.v`)
 
 ---
 
