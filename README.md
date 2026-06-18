@@ -1,1 +1,1 @@
-verilog modules(with testbench) by Bingo
+Verilog Modules(with testbench) by Bingo
