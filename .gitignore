@@ -2,3 +2,7 @@
 .DS_Store
 #.a.out: ignore default compiled binary output
 a.out
+#tb.vcd: ignore vcd waveform files
+tb.vcd
+# Standard cell libraries (I will get in trouble if i upload this)
+N16ADFP_StdCell.v

@@ -17,6 +17,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
   - [4-bit Shift Register](#4-bit-shift-register)
   - [Synchronous Counter](#synchronous-counter)
   - [Comparator](#comparator)
+- [Traffic Light Controller](#traffic-light-controller)
 - [Bingo's Template](#bingos-template)
 
 ---
@@ -172,6 +173,26 @@ Single-bit comparator that reports greater-than, equal, and less-than results.
 - `Out[0]` for `In1 > In2`
 - `Out[1]` for `In1 == In2`
 - `Out[2]` for `In1 < In2`
+
+---
+
+## Traffic Light Controller
+
+Finite-state-machine (FSM) traffic light controller for two roads with timed state transitions.
+**Location:** `traffic light/`
+**Files:**
+- `traffic_light.v` - Top-level traffic light controller and internal 4-bit counter
+**State Sequence and Duration:**
+- `S0`: Road A Red, Road B Red (`1` cycle)
+- `S1`: Road A Green, Road B Red (`7` cycles)
+- `S2`: Road A Yellow, Road B Red (`2` cycles)
+- `S3`: Road A Red, Road B Red (`1` cycle)
+- `S4`: Road A Red, Road B Green (`7` cycles)
+- `S5`: Road A Red, Road B Yellow (`2` cycles)
+**Characteristics:**
+- 6-state synchronous FSM
+- Dedicated counter-based timing per state
+- Safe default output maps to all-red
 
 ---
 
