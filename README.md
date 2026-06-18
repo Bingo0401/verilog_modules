@@ -64,6 +64,28 @@ An optimized 4-bit adder that generates carry signals in parallel, reducing prop
 
 ---
 
+## 8-bit Adder/Subtractor
+
+This section covers the 8-bit adder/subtractor modules found in the `Adder_Subtractor/` directory.
+
+### Unsigned Adder/Subtractor
+
+Performs 8-bit unsigned addition and subtraction.
+
+**Location:** `Adder_Subtractor/unsigned_without_overflow_detection/`
+
+**Testbench (`tb.v`):** A powerful testbench that exhaustively checks all 131,072 possible input combinations to guarantee correctness. It is used to test both the `ripple_carry` and `carry_lookahead` implementations.
+
+### Signed Adder/Subtractor
+
+Performs 8-bit signed (two's complement) addition and subtraction with overflow detection.
+
+**Location:** `Adder_Subtractor/signed_with_overflow_detection/`
+
+**Testbench (`tb.v`):** A dedicated testbench focused on verifying signed arithmetic edge cases and overflow conditions. It is used to test both the `ripple_carry` and `carry_lookahead` implementations.
+
+---
+
 ## Bingo's Template
 
 A template project structure for Verilog module development.

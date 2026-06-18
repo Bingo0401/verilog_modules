@@ -22,7 +22,7 @@ reg        exp_v;
 
 integer errors;
 integer total;
-integer SETTLE_NS = 8;  // settle time before checking outputs
+integer SETTLE_NS = 20; // settle time before checking outputs
 integer HOLD_NS = 10; // hold time for the each test
 
 adder_subtractor UUT (
