@@ -63,6 +63,7 @@ task automatic run_case;
         end
 
         #(HOLD_NS);
+        total_tests = total_tests + 1;
     end
 endtask
 
