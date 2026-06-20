@@ -13,3 +13,9 @@ module Comparator( In1, In2, Out);
     end
 
 endmodule
+
+/*
+00 when In1 > In2
+01 when In1 = In2
+10 when In1 < In2
+*/
