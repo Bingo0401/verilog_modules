@@ -19,6 +19,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
   - [Comparator](#comparator)
 - [Traffic Light Controller](#traffic-light-controller)
 - [Voting](#voting)
+- [Medium](#medium)
 - [Bingo's Template](#bingos-template)
 
 ---
@@ -209,6 +210,20 @@ Finite-state-machine (FSM) traffic light controller for two roads with timed sta
 - produce two outputs : 
   -`out`: five-bit one-hot number that occurred most
   -`count`: 3-bit binary count indicating how many times that number appeared
+
+---
+
+## Medium
+
+#### Location: `Medium/`
+#### Files:
+- `voting.v`  
+- `tb.v`
+#### Operation
+- accepts five six-bit one-hot (i.e., only one bit will have the logic-1)
+- one-hot inputs: `a0` `a1` `a2` `a3` `a4`
+- produce one outputs : 
+  -`out`: the input with the middle of the five values
 
 ---
 
