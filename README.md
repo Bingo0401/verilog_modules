@@ -202,7 +202,7 @@ Finite-state-machine (FSM) traffic light controller for two roads with timed sta
 **Files:**
 - `voting.v`  
 - `tb.v`
-**Rule**
+**Operation**
 - accepts five five-bit one-hot (i.e., only one bit will have the logic-1)
 - one-hot inputs: `a0` `a1` `a2` `a3` `a4`
 - produce two outputs : 
