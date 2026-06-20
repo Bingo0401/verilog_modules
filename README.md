@@ -22,16 +22,16 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 
 ---
 
-## Arithmetic Modules
+# Arithmetic Modules
 
 This section covers modules designed for arithmetic operations, ranging from basic building blocks to more complex multi-bit systems.
 
-### 1-bit Full Adder
+## 1-bit Full Adder
 
 Complete implementation of a 1-bit full adder with multiple design approaches.
 
 **Location:** `Adders/full_adder/`
-**Files:**
+#### Files:
 - `tb.v` - Testbench for full adder
 - `Data Flow Level/full_adder.v` - Behavioral/dataflow implementation
 - `Gate Level/full_adder.v` - Gate-level implementation
@@ -40,27 +40,27 @@ The full adder adds three input bits (A, B, Carry In) and produces a Sum and Car
 
 ---
 
-### Four-Bit Adders
+## Four-Bit Adders
 
 Multi-bit adder implementations demonstrating different design techniques.
 
-**Location:** `Adders/four_bit_adders/`
+#### Location: `Adders/four_bit_adders/`
 
-#### Ripple Carry Adder
+### Ripple Carry Adder
 A simple cascaded 4-bit adder where carry bits ripple from one stage to the next.
-**Files:**
+#### Files:
 - `ripple_carry_adder/four_bit_ripple_carry_adder.v` - Core module
 - `tb.v` - Testbench for ripple carry adder
 **Characteristics:**
 - Simple design
 - Lower cost but slower (carry propagation delay)
 
-#### Carry Lookahead Adder
+### Carry Lookahead Adder
 An optimized 4-bit adder that generates carry signals in parallel, reducing propagation delay.
-**Files:**
+#### Files:
 - `carry_lookahead_adder/four_bit_carry_lookahead_adder.v` - Core module
 - `tb.v` - Testbench for carry lookahead adder
-**Characteristics:**
+#### Characteristics:
 - More complex logic
 - Faster operation (parallel carry generation)
 - Better for high-performance designs
@@ -74,20 +74,20 @@ These modules are designed to perform both addition and subtraction on 8-bit inp
 ### Unsigned Adder/Subtractor
 
 These modules perform 8-bit unsigned addition and subtraction.
-**Location:** `Adder_Subtractor/unsigned_without_overflow_detection/`
+#### Location: `Adder_Subtractor/unsigned_without_overflow_detection/`
 **Testbench (`tb.v`):** A powerful testbench that exhaustively checks all 131,072 possible input combinations to guarantee correctness. It is used to test both the `ripple_carry` and `carry_lookahead` implementations.
 
-**Architectures:**
+#### Architectures:
 -   **Ripple Carry:** A simple, sequential adder. (`ripple_carry/adder_subtractor.v`)
 -   **Carry Lookahead:** A faster, parallel adder using a hierarchical design. (`carry_lookahead/adder_subtractor.v`)
 
 ### Signed Adder/Subtractor
 
 These modules perform 8-bit signed (two's complement) addition and subtraction with overflow detection.
-**Location:** `Adder_Subtractor/signed_with_overflow_detection/`
+#### Location: `Adder_Subtractor/signed_with_overflow_detection/`
 **Testbench (`tb.v`):** A dedicated testbench focused on verifying signed arithmetic edge cases and overflow conditions. It is used to test both the `ripple_carry` and `carry_lookahead` implementations.
 
-**Architectures:**
+#### Architectures:
 -   **Ripple Carry:** A sequential adder with signed overflow detection. (`ripple_carry/adder_subtractor.v`)
 -   **Carry Lookahead:** A high-speed parallel adder with signed overflow detection. (`carry_lookahead/adder_subtractor.v`)
 
@@ -101,9 +101,9 @@ This section contains various sequential logic elements, which are fundamental b
 
 Level-sensitive D latch implementation.
 **Location:** `Sequential_Elements/d_latch/`
-**Files:**
+#### Files:
 - `d_latch.v` - Core module
-**Characteristics:**
+#### Characteristics:
 - Transparent when `clk=1`
 - Holds previous value when `clk=0`
 
@@ -112,12 +112,12 @@ Level-sensitive D latch implementation.
 ### D Flip-Flops
 
 Edge-triggered 1-bit D flip-flop implementations.
-**Location:** `Sequential_Elements/d_flip_flop/`
-**Files:**
+#### Location: `Sequential_Elements/d_flip_flop/`
+#### Files:
 - `Postitive Edge d flip-flop/d_flip_flop.v` - Positive-edge triggered DFF
 - `Postitive Edge d flip-flop/d_flip_flop_tb.v` - Testbench for positive-edge DFF
 - `Negative Edge d flip-flop/d_flip_flop.v` - Negative-edge triggered DFF
-**Characteristics:**
+#### Characteristics:
 - Captures `Din` on selected clock edge
 - Simple single-bit storage element
 
@@ -126,10 +126,10 @@ Edge-triggered 1-bit D flip-flop implementations.
 ### D Flip-Flop with Reset and Enable
 
 8-bit D flip-flop with write-enable and reset control.
-**Location:** `Sequential_Elements/d_flip_flop_with_reset_and_enable/`
-**Files:**
+#### Location: `Sequential_Elements/d_flip_flop_with_reset_and_enable/`
+#### Files:
 - `d_flip_flop.v` - Core module
-**Characteristics:**
+#### Characteristics:
 - 8-bit data input/output
 - Write-enable controlled update (`w_en`)
 - Includes reset logic
@@ -139,10 +139,10 @@ Edge-triggered 1-bit D flip-flop implementations.
 ### 4-bit Shift Register
 
 A 4-bit serial-in, parallel-out (SIPO) shift register with an asynchronous reset. Data is shifted in on the rising edge of the clock.
-**Location:** `Sequential_Elements/four_bit_shift_register/`
-**Files:**
+#### Location: `Sequential_Elements/four_bit_shift_register/`
+#### Files:
 - `four_bit_shift_register.v` - Core module
-**Characteristics:**
+#### Characteristics:
 - Synchronous operation with active-high asynchronous reset
 - Serial input (`Sin`), parallel output (`Pout`), and serial output (`Sout`)
 
@@ -151,11 +151,11 @@ A 4-bit serial-in, parallel-out (SIPO) shift register with an asynchronous reset
 ### Synchronous Counter
 
 Parameterized synchronous up-counter with enable and clear controls.
-**Location:** `Sequential_Elements/syncronous_counter/`
-**Files:**
+#### Location: `Sequential_Elements/syncronous_counter/`
+#### Files:
 - `syncronous_counter.v` - Core counter module
 - `syncronous_counter_tb.v` - Testbench
-**Characteristics:**
+#### Characteristics:
 - Configurable width via `parameter WIDTH`
 - Counts up when `en=1`
 - Clears on `reset` or `clr`
@@ -165,10 +165,10 @@ Parameterized synchronous up-counter with enable and clear controls.
 ### Comparator
 
 Single-bit comparator that reports greater-than, equal, and less-than results.
-**Location:** `Sequential_Elements/comparator/`
-**Files:**
+#### Location: `Sequential_Elements/comparator/`
+#### Files:
 - `comparator.v` - Core module
-**Characteristics:**
+#### Characteristics:
 - 3-bit output encoding:
 - `Out[0]` for `In1 > In2`
 - `Out[1]` for `In1 == In2`
@@ -179,17 +179,17 @@ Single-bit comparator that reports greater-than, equal, and less-than results.
 ## Traffic Light Controller
 
 Finite-state-machine (FSM) traffic light controller for two roads with timed state transitions.
-**Location:** `traffic light/`
-**Files:**
+#### Location: `traffic light/`
+#### Files:
 - `traffic_light.v` - Top-level traffic light controller and internal 4-bit counter
-**State Sequence and Duration:**
+#### State Sequence and Duration:
 - `S0`: Road A Red, Road B Red (`1` cycle)
 - `S1`: Road A Green, Road B Red (`7` cycles)
 - `S2`: Road A Yellow, Road B Red (`2` cycles)
 - `S3`: Road A Red, Road B Red (`1` cycle)
 - `S4`: Road A Red, Road B Green (`7` cycles)
 - `S5`: Road A Red, Road B Yellow (`2` cycles)
-**Characteristics:**
+#### Characteristics:
 - 6-state synchronous FSM
 - Dedicated counter-based timing per state
 - Safe default output maps to all-red
@@ -198,11 +198,11 @@ Finite-state-machine (FSM) traffic light controller for two roads with timed sta
 
 ## Voting
 
-**Location:** `voting/`
-**Files:**
+#### Location: `voting/`
+#### Files:
 - `voting.v`  
 - `tb.v`
-**Operation**
+#### Operation
 - accepts five five-bit one-hot (i.e., only one bit will have the logic-1)
 - one-hot inputs: `a0` `a1` `a2` `a3` `a4`
 - produce two outputs : 
