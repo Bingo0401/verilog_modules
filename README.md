@@ -4,6 +4,9 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 
 ## Table of Contents
 
+- [Combinational Elements](#combinational-elements)
+  - [2 to 1 Multiplexer](#2-to-1-multiplexer)
+  - [4 to 1 Multiplexer](#4-to-1-multiplexer)
 - [Arithmetic Modules](#arithmetic-modules)
   - [Adders](#adders)
     - [Full Adder](#full-adder)
@@ -25,6 +28,33 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 
 ---
 
+# Combinational Elements
+
+## 2 to 1 Multiplexer
+Combinational logic that selects one of two inputs (`a`, `b`) using selector `sel` and drives output `c`.
+#### Location: `Combinational_Elements/mux_2to1/`
+#### Files:
+- `behavior level/mux_2to1.v` - Behavioral-style implementation
+- `dataflow level/mux_2to1.v` - Dataflow implementation using `assign`
+- `gate level/mux_2to1.v` - Gate-level implementation with primitive gates
+- `tb.v` - Testbench covering all 8 input combinations
+#### Characteristics:
+- 1-bit data path with 1-bit selector
+- Demonstrates three modeling styles for the same function
+
+---
+
+## 4 to 1 Multiplexer
+Combinational logic that selects one bit from a 4-bit input bus (`Din[3:0]`) using `sel[1:0]`.
+#### Location: `Combinational_Elements/mux_4to1/`
+#### Files:
+- `mux_4to1.v` - 4-to-1 mux module built from 2-to-1 mux stages
+- `tb.v` - Testbench that verifies all select values with multiple input patterns
+#### Characteristics:
+- 4-to-1 single-bit output multiplexer
+- Hierarchical design composed of three 2-to-1 mux blocks
+---
+
 # Arithmetic Modules
 
 This section covers modules designed for arithmetic operations, ranging from basic building blocks to more complex multi-bit systems.
@@ -33,7 +63,7 @@ This section covers modules designed for arithmetic operations, ranging from bas
 
 Complete implementation of a 1-bit full adder with multiple design approaches.
 
-**Location:** `Adders/full_adder/`
+#### Location: `Adders/full_adder/`
 #### Files:
 - `tb.v` - Testbench for full adder
 - `Data Flow Level/full_adder.v` - Behavioral/dataflow implementation
