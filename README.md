@@ -18,6 +18,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
   - [Synchronous Counter](#synchronous-counter)
   - [Comparator](#comparator)
 - [Traffic Light Controller](#traffic-light-controller)
+- [Voting](#voting)
 - [Bingo's Template](#bingos-template)
 
 ---
