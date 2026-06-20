@@ -4,7 +4,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 
 ## Table of Contents
 
-- [Arithmetic Modules](#Arithmetic Modules)
+- [Arithmetic Modules](#arithmetic-modules)
   - [Adders](#adders)
     - [Full Adder](#full-adder)
     - [Four-Bit Adders](#four-bit-adders)
