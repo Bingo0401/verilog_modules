@@ -4,19 +4,20 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 
 ## Table of Contents
 
-- [Adders](#adders)
-  - [Full Adder](#full-adder)
-  - [Four-Bit Adders](#four-bit-adders)
-- [8-bit Adder/Subtractor](#8-bit-addersubtractor)
-  - [Unsigned Adder/Subtractor](#unsigned-addersubtractor)
-  - [Signed Adder/Subtractor](#signed-addersubtractor)
+- [Arithmetic Modules](#Arithmetic Modules)
+  - [Adders](#adders)
+    - [Full Adder](#full-adder)
+    - [Four-Bit Adders](#four-bit-adders)
+  - [8-bit Adder/Subtractor](#8-bit-addersubtractor)
+    - [Unsigned Adder/Subtractor](#unsigned-addersubtractor)
+    - [Signed Adder/Subtractor](#signed-addersubtractor)
+  - [Comparator](#comparator)
 - [Sequential Elements](#sequential-elements)
   - [D Latch](#d-latch)
   - [D Flip-Flops](#d-flip-flops)
   - [D Flip-Flop with Reset and Enable](#d-flip-flop-with-reset-and-enable)
   - [4-bit Shift Register](#4-bit-shift-register)
   - [Synchronous Counter](#synchronous-counter)
-  - [Comparator](#comparator)
 - [Traffic Light Controller](#traffic-light-controller)
 - [Voting](#voting)
 - [Medium](#medium)
@@ -95,6 +96,20 @@ These modules perform 8-bit signed (two's complement) addition and subtraction w
 
 ---
 
+### Comparator
+
+Single-bit comparator that reports greater-than, equal, and less-than results.
+#### Location: `Sequential_Elements/comparator/`
+#### Files:
+- `comparator.v` - Core module
+#### Characteristics:
+- 3-bit output encoding:
+- `Out[0]` for `In1 > In2`
+- `Out[1]` for `In1 == In2`
+- `Out[2]` for `In1 < In2`
+
+---
+
 ## Sequential Elements
 
 This section contains various sequential logic elements, which are fundamental building blocks for memory and state machines in digital circuits.
@@ -161,20 +176,6 @@ Parameterized synchronous up-counter with enable and clear controls.
 - Configurable width via `parameter WIDTH`
 - Counts up when `en=1`
 - Clears on `reset` or `clr`
-
----
-
-### Comparator
-
-Single-bit comparator that reports greater-than, equal, and less-than results.
-#### Location: `Sequential_Elements/comparator/`
-#### Files:
-- `comparator.v` - Core module
-#### Characteristics:
-- 3-bit output encoding:
-- `Out[0]` for `In1 > In2`
-- `Out[1]` for `In1 == In2`
-- `Out[2]` for `In1 < In2`
 
 ---
 
