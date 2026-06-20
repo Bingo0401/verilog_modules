@@ -196,6 +196,21 @@ Finite-state-machine (FSM) traffic light controller for two roads with timed sta
 
 ---
 
+## Voting
+
+**Location:** `voting/`
+**Files:**
+- `voting.v`  
+- `tb.v`
+**Rule**
+- accepts five five-bit one-hot (i.e., only one bit will have the logic-1)
+- one-hot inputs: `a0` `a1` `a2` `a3` `a4`
+- produce two outputs : 
+  -`out`: five-bit one-hot number that occurred most
+  -`count`: 3-bit binary count indicating how many times that number appeared
+
+---
+
 ## Bingo's Template
 
 A template project structure for Verilog module development.
