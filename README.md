@@ -21,6 +21,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
   - [D Flip-Flop with Reset and Enable](#d-flip-flop-with-reset-and-enable)
   - [4-bit Shift Register](#4-bit-shift-register)
   - [Synchronous Counter](#synchronous-counter)
+  - [Tick Generator](#tick-generator)
 - [Traffic Light Controller](#traffic-light-controller)
 - [Voting](#voting)
 - [Medium](#medium)
@@ -206,6 +207,19 @@ Parameterized synchronous up-counter with enable and clear controls.
 - Configurable width via `parameter WIDTH`
 - Counts up when `en=1`
 - Clears on `reset` or `clr`
+
+---
+
+### Tick Generator
+
+A module that generates a single-cycle tick pulse at a programmable frequency.
+#### Location: `Sequential_Elements/tick_generator/`
+#### Files:
+- `tick_generator.v` - Core module
+- `tb.v` - Testbench
+#### Characteristics:
+- Generates a tick when an internal counter reaches a `MAX_COUNT` value.
+- The `MAX_COUNT` parameter determines the frequency of the tick.
 
 ---
 
