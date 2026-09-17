@@ -18,6 +18,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 - [Sequential Elements](#sequential-elements)
   - [D Latch](#d-latch)
   - [D Flip-Flops](#d-flip-flops)
+  - [Scan Flip-Flop](#scan-flip-flop)
   - [D Flip-Flop with Reset and Enable](#d-flip-flop-with-reset-and-enable)
   - [4-bit Shift Register](#4-bit-shift-register)
   - [Synchronous Counter](#synchronous-counter)
@@ -168,6 +169,20 @@ Edge-triggered 1-bit D flip-flop implementations.
 #### Characteristics:
 - Captures `Din` on selected clock edge
 - Simple single-bit storage element
+
+---
+
+### Scan Flip-Flop
+
+A 1-bit positive-edge flip-flop with a mux that selects normal data or scan data.
+#### Location: `Sequential_Elements/scan_flip_flop/`
+#### Files:
+- `scan_flip_flop.v` - Scan flip-flop and its `mux_2to1` and `d_flip_flop` modules
+- `tb.v` - Testbench covering all eight input combinations and output hold between clock edges
+#### Characteristics:
+- Captures `Din` when `Scan_en=0` and `Scan_in` when `Scan_en=1`
+- Updates `Dout` on the rising edge of `clk`; holds its value between edges
+- All required design modules are in `scan_flip_flop.v`
 
 ---
 
