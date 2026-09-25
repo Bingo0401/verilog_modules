@@ -21,6 +21,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
   - [Scan Flip-Flop](#scan-flip-flop)
   - [D Flip-Flop with Reset and Enable](#d-flip-flop-with-reset-and-enable)
   - [4-bit Shift Register](#4-bit-shift-register)
+  - [Universal Shift Register](#universal-shift-register)
   - [Synchronous Counter](#synchronous-counter)
   - [Tick Generator](#tick-generator)
 - [Traffic Light Controller](#traffic-light-controller)
@@ -208,6 +209,39 @@ A 4-bit serial-in, parallel-out (SIPO) shift register with an asynchronous reset
 #### Characteristics:
 - Synchronous operation with active-high asynchronous reset
 - Serial input (`Sin`), parallel output (`Pout`), and serial output (`Sout`)
+
+---
+
+### Universal Shift Register
+
+A 4-bit universal shift register built from four 4-to-1 multiplexers and four enabled D flip-flops. Supports hold, bidirectional shifting, and parallel load on the rising edge of `clk`.
+
+#### Location: `Sequential_Elements/uni_sft_reg/`
+
+#### Files:
+
+- `uni_sft_reg.v` - Top-level `universal_shift_register` and its `mux_4x1` and `flip_flop` modules
+- `tb.v` - Self-checking testbench covering 8,192 transitions across all starting states, modes, serial inputs, parallel inputs, enable values, and reset values
+
+#### Characteristics:
+
+- 4-bit parallel input (`Din[3:0]`) and output (`Q[3:0]`)
+- Active-high synchronous reset (`rst`) clears `Q` to zero and takes priority over enable
+- Holds its value when `en=0` and `rst=0`
+- Shared serial input (`Cin`) enters bit 3 during right shift or bit 0 during left shift
+- Combinational serial output (`Cout`) exposes `Q[3]` when `Sel=10`, otherwise `Q[0]`; sample before the rising edge to capture the bit being shifted out
+- Testbench checks `Q`, `Cout`, reset priority, and output hold between clock edges
+
+#### Operation:
+
+When `rst=0` and `en=1`, `Sel[1:0]` selects the next value of `Q`:
+
+| `Sel` | Function | Next `Q` |
+| --- | --- | --- |
+| `00` | Hold | `Q` |
+| `01` | Shift right | `{Cin, Q[3:1]}` |
+| `10` | Shift left | `{Q[2:0], Cin}` |
+| `11` | Parallel load | `Din` |
 
 ---
 
