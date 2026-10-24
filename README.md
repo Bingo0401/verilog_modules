@@ -7,6 +7,8 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
 - [Combinational Elements](#combinational-elements)
   - [2 to 1 Multiplexer](#2-to-1-multiplexer)
   - [4 to 1 Multiplexer](#4-to-1-multiplexer)
+  - [8 to 1 Multiplexer](#8-to-1-multiplexer)
+  - [Additional Dataflow Modules](#additional-dataflow-modules)
 - [Arithmetic Modules](#arithmetic-modules)
   - [Adders](#adders)
     - [Full Adder](#full-adder)
@@ -15,6 +17,7 @@ A collection of Verilog hardware modules with comprehensive testbenches by Bingo
     - [Unsigned Adder/Subtractor](#unsigned-addersubtractor)
     - [Signed Adder/Subtractor](#signed-addersubtractor)
   - [Comparator](#comparator)
+  - [Additional Dataflow Arithmetic Modules](#additional-dataflow-arithmetic-modules)
 - [Sequential Elements](#sequential-elements)
   - [D Latch](#d-latch)
   - [D Flip-Flops](#d-flip-flops)
@@ -56,6 +59,42 @@ Combinational logic that selects one bit from a 4-bit input bus (`Din[3:0]`) usi
 #### Characteristics:
 - 4-to-1 single-bit output multiplexer
 - Hierarchical design composed of three 2-to-1 mux blocks
+
+---
+
+## 8 to 1 Multiplexer
+
+`Combinational_Elements/mux_8to1/mux_8to1.v` selects one of eight input bits with a 3-bit `sel`. Like the existing 4-to-1 mux, `sel=0` selects the highest numbered bit of `Din`.
+
+---
+
+## Additional Dataflow Modules
+
+These modules use continuous `assign` statements and can be compiled independently:
+
+| Module | Location | Behavior |
+| --- | --- | --- |
+| `demux_1to4` | `Combinational_Elements/demux_1to4/demux_1to4.v` | Routes `din` to one bit of `dout[3:0]` selected by `sel[1:0]` |
+| `decoder_2to4` | `Combinational_Elements/decoder_2to4/decoder_2to4.v` | Active-high, enabled 2-to-4 one-hot decoder |
+| `priority_encoder_4to2` | `Combinational_Elements/priority_encoder_4to2/priority_encoder_4to2.v` | Encodes the highest asserted input bit; `valid=0` when no bit is set |
+| `even_parity_8bit` | `Combinational_Elements/even_parity_8bit/even_parity_8bit.v` | Generates an even parity bit and checks received data and parity |
+| `leading_zero_count_5bit` | `Combinational_Elements/leading_zero_count_5bit/leading_zero_count_5bit.v` | Counts leading zeros from 0 to 5; also reports zero input |
+| `population_count_5bit` | `Combinational_Elements/population_count_5bit/population_count_5bit.v` | Counts asserted bits from 0 to 5 |
+| `one_hot_detector_5bit` | `Combinational_Elements/one_hot_detector_5bit/one_hot_detector_5bit.v` | Reports exactly one bit set or at most one bit set |
+| `binary_to_gray_5bit` | `Combinational_Elements/gray_code_5bit/binary_to_gray_5bit.v` | Converts 5-bit binary to Gray code |
+| `gray_to_binary_5bit` | `Combinational_Elements/gray_code_5bit/gray_to_binary_5bit.v` | Converts 5-bit Gray code to binary |
+
+`leading_zero_count`, `population_count`, `one_hot_detector`, `binary_to_gray`, and `gray_to_binary` also have `_4bit` and `_8bit` modules in matching width-specific folders. Their existing `_5bit` versions remain available. Leading-zero and population counts use 3 output bits for 4- and 5-bit input and 4 output bits for 8-bit input.
+
+The other combinational families have these 4/8 variants:
+
+| Family | 4-bit form | 8-bit form |
+| --- | --- | --- |
+| Demultiplexer | `demux_1to4` (four output channels) | `demux_1to8` (eight output channels), both in `demux_1to4/` |
+| Decoder | `decoder_2to4` (four outputs) | `decoder_3to8` (eight outputs), both in `decoder_2to4/` |
+| Priority encoder | `priority_encoder_4to2` | `priority_encoder_8to3`, both in `priority_encoder_4to2/` |
+| Even parity | `even_parity_4bit` | `even_parity_8bit`, both in `even_parity_8bit/` |
+
 ---
 
 # Arithmetic Modules
@@ -70,6 +109,7 @@ Complete implementation of a 1-bit full adder with multiple design approaches.
 #### Files:
 - `tb.v` - Testbench for full adder
 - `Data Flow Level/full_adder.v` - Behavioral/dataflow implementation
+- `Data Flow Level/full_adder_4bit.v` and `full_adder_8bit.v` - Dataflow word adders with carry-in
 - `Gate Level/full_adder.v` - Gate-level implementation
 
 The full adder adds three input bits (A, B, Carry In) and produces a Sum and Carry Out.
@@ -86,6 +126,7 @@ Multi-bit adder implementations demonstrating different design techniques.
 A simple cascaded 4-bit adder where carry bits ripple from one stage to the next.
 #### Files:
 - `ripple_carry_adder/four_bit_ripple_carry_adder.v` - Core module
+- `ripple_carry_adder/ripple_carry_adder_8bit.v` - 8-bit dataflow ripple-carry variant
 - `tb.v` - Testbench for ripple carry adder
 **Characteristics:**
 - Simple design
@@ -95,6 +136,7 @@ A simple cascaded 4-bit adder where carry bits ripple from one stage to the next
 An optimized 4-bit adder that generates carry signals in parallel, reducing propagation delay.
 #### Files:
 - `carry_lookahead_adder/four_bit_carry_lookahead_adder.v` - Core module
+- `carry_lookahead_adder/carry_lookahead_adder_8bit.v` - 8-bit dataflow lookahead variant
 - `tb.v` - Testbench for carry lookahead adder
 #### Characteristics:
 - More complex logic
@@ -132,14 +174,33 @@ These modules perform 8-bit signed (two's complement) addition and subtraction w
 ### Comparator
 
 Single-bit comparator that reports greater-than, equal, and less-than results.
-#### Location: `Sequential_Elements/comparator/`
+#### Location: `Arithmetic_Modules/comparator/`
 #### Files:
 - `comparator.v` - Core module
+- `comparator_4bit.v`, `comparator_5bit.v`, `comparator_8bit.v` - Unsigned word comparators with separate `greater`, `equal`, and `less` outputs
 #### Characteristics:
 - 3-bit output encoding:
 - `Out[0]` for `In1 > In2`
 - `Out[1]` for `In1 == In2`
 - `Out[2]` for `In1 < In2`
+
+---
+
+## Additional Dataflow Arithmetic Modules
+
+| Module | Location | Behavior |
+| --- | --- | --- |
+| `half_adder` | `Arithmetic_Modules/Adders/half_adder/half_adder.v` | 1-bit sum and carry |
+| `incrementer_8bit` | `Arithmetic_Modules/incrementer_8bit/incrementer_8bit.v` | Adds one to an 8-bit input; exposes carry-out |
+| `multiplier_8bit` | `Arithmetic_Modules/multiplier_8bit/multiplier_8bit.v` | Unsigned 8-by-8 multiplication with a 16-bit product |
+| `comparator_8bit` | `Arithmetic_Modules/comparator/comparator_8bit.v` | Unsigned 8-bit greater/equal/less outputs |
+| `comparator_5bit` | `Arithmetic_Modules/comparator/comparator_5bit.v` | Unsigned 5-bit greater/equal/less outputs |
+| `saturating_adder_5bit` | `Arithmetic_Modules/Adders/saturating_adder_5bit/saturating_adder_5bit.v` | Unsigned addition clamped to 31 with saturation flag |
+| `carry_save_adder_5bit` | `Arithmetic_Modules/Adders/carry_save_adder_5bit/carry_save_adder_5bit.v` | Compresses three operands into sum and shifted carry rows |
+
+The `half_adder`, `incrementer`, and `multiplier` families have `_4bit` and `_8bit` modules alongside their original files. The 5-bit `saturating_adder` and `carry_save_adder` families also have `_4bit` and `_8bit` versions in matching width-specific folders. For a carry-save adder, add `sum_bits` and `carry_bits` to get the sum of all three inputs.
+
+The shared self-checking testbench `tests/dataflow_modules_tb.v` covers the first eight dataflow modules added to this collection. The width variants are supplied without additional testbench files.
 
 ---
 
